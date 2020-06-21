@@ -1,0 +1,21 @@
+{
+	"short_name": "NumberPuzzle",
+	"name": "NumberPuzzle",
+	"theme_color": "#4A90E2",
+	"background_color": "#040c1b",
+	"description": "A Cool Number Puzzle Game",
+	"display": "standalone",
+	"icons": [
+		{
+			"src": "image/icon2.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "image/icon3.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	],
+	"start_url": "."
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <title>Number Puzzle Game</title>
+    <link rel="shortcut icon" href="./image/icon.png" width='270px' type="image/png">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="manifest" href="./manifest.webmanifest">
+    <script src="./puzzle.js" defer></script>
+</head>
+
+<body>
+    <div class="game-container">
+        <div class="game__timer">
+            <div class="timer__item timer__clock"><span>⏰|</span>0:00</div>
+            <div class="timer__item timer__home"><span>🏠</span></div>
+            <div class="timer__item timer__remake"><span>🔁</span></div>
+            <div class="timer__item timer__moves"><span>Moves👣|</span> 0</div>
+        </div>
+        <div class="game__mode">
+            <span class="puzzle__mode">
+                <span>Select Puzzle Type:</span>
+                <select class="puzzle__type">
+                    <option value="number">Number</option>
+                    <option value="letter">Letter</option>
+                    <!-- <option value="image">image</option> -->
+                </select>
+            </span>
+            <span class="puzzle__mode ">
+                <span>Select Puzzle Size:</span>
+                <select class="puzzle__size">
+                    <option value="3x3">3x3</option>
+                    <option value="4x4">4x4</option>
+                </select>
+            </span>
+            <span class="puzzle__mode ">
+                <span>Select Puzzle Theme:</span>
+                <select class="puzzle__theme">
+                    <option value="wood">Wood</option>
+                    <option value="metal">Metal</option>
+                </select>
+            </span>
+            <button class="puzzle__continue-button">CONTINUE</button>
+        </div>
+        <div class="game__home">
+            <span class="home__title"><span data-1>Number</span> <span data-2>Puzzle</span></span>
+            <button class="home__play-button">▶️PLAY▶️</button>
+            <button class="home__how_to_play-button">🎮How To Play🎮</button>
+            <button class="home__about_me-button">🧑🏽‍💻About Me🧑🏽‍💻</button>
+        </div>
+        <div class="game__win-message">
+            <span class="win__message">✔️Puzzle Completed ✔️</span>
+            <span data-interline>IN</span>
+            <span class="win__time"></span>
+            <span data-interline>WITH</span>
+            <span class="win__move"></span>
+
+            <div class="win__buttons">
+                <button class="win__play-button">PLAY AGAIN</button>
+                <button class="win__home-button">🏠🔙🏃🏽</button>
+            </div>
+        </div>
+        <div class="game__about-me">
+            <span>ABOUT ME</span>
+            <button class="about-me__exit__button">❌</button>
+            <p>
+                Hi👋🏽, my name is Luis Martinez👦🏽, I'm a software's👨🏽‍💻 student at ITLA.
+                I made this game🧩 just for fun🥳 and I hope👐 you enjoy play🎮 it because that's
+                my goal🎯.
+            </p>
+
+            <b> ⬇⬇ Others Games Made By Me ⬇⬇</b>
+
+            <div class="about-me__link">
+                <span><a class="about-me__game__link" href="https://louislam09.github.io/lumberjack-game/"
+                        target="_blank"><img src="image/game1.png" alt="game1 image"></a></span>
+                <span><a class="about-me__game__link" href="https://louislam09.github.io/GuessEmojiGame/"
+                        target="_blank"><img src="image/game2.png" alt="game2 image"></a></span>
+                <span><a class="about-me__game__link" href="https://louislam09.github.io/Square-Game/"
+                        target="_blank"><img src="image/game3.png" alt="game3 image"></a></span>
+                <span><a class="about-me__game__link" href="https://louislam09.github.io/Tic-Tac-Toe/"
+                        target="_blank"><img src="image/game4.png" alt="game4 image"></a></span>
+            </div>
+        </div>
+        <div class="puzzle-container">
+        </div>
+    </div>
+
+</html>
