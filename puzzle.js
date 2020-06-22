@@ -391,7 +391,7 @@ function getRandomElement() {
 
 async function shufflePiece() {
     stopTime();
-    for (let i = 0; i < 250; i++) {
+    for (let i = 0; i < 500; i++) {
         let randomELementAvailable = getRandomElement();
         let randomElement = randomELementAvailable[Math.floor(Math.random() * randomELementAvailable.length)];
 
@@ -410,7 +410,7 @@ async function shufflePiece() {
             puzzleContainer.innerHTML = "";
             listPieces.forEach(el => puzzleContainer.appendChild(el));
         }
-        if (i == 249) startTime();
+        if (i == 499) startTime();
     }
 }
 
