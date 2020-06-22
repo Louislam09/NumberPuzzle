@@ -406,7 +406,9 @@ async function shufflePiece() {
             listPieces[firstElementTargetIndex] = lastElementTarget;
             changePos.push(randomElement)
 
-            await new Promise((resolve) => setTimeout(resolve, 0.000000000000000000001));
+            if (i > 900) {
+                await new Promise((resolve) => setTimeout(resolve, 0.000000000000000000001));
+            }
             puzzleContainer.innerHTML = "";
             listPieces.forEach(el => puzzleContainer.appendChild(el));
         }
