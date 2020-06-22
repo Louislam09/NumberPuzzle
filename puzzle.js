@@ -391,7 +391,7 @@ function getRandomElement() {
 
 async function shufflePiece() {
     stopTime();
-    for (let i = 0; i < 500; i++) {
+    for (let i = 0; i < 1000; i++) {
         let randomELementAvailable = getRandomElement();
         let randomElement = randomELementAvailable[Math.floor(Math.random() * randomELementAvailable.length)];
 
@@ -406,11 +406,11 @@ async function shufflePiece() {
             listPieces[firstElementTargetIndex] = lastElementTarget;
             changePos.push(randomElement)
 
-            await new Promise((resolve) => setTimeout(resolve, 0.01));
+            await new Promise((resolve) => setTimeout(resolve, 0.000000000000000000001));
             puzzleContainer.innerHTML = "";
             listPieces.forEach(el => puzzleContainer.appendChild(el));
         }
-        if (i == 499) startTime();
+        if (i == 999) startTime();
     }
 }
 
