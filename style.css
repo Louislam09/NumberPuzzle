@@ -216,7 +216,7 @@ body {
 	transform: rotate(90deg);
 }
 .timer__moves {
-	float: right;
+	margin-left: 5%;
 }
 .puzzle-container {
 	display: inline-table;

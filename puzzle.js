@@ -32,6 +32,7 @@ let winHomeButton = document.querySelector(".win__home-button");
 
 let listPieces = [];
 let winPosition = [];
+let changePos = []
 let firstElementTarget;
 let lastElementTarget;
 
@@ -94,7 +95,6 @@ class Piece {
             winMessageSpan.forEach(span => span.style.background = getComputedStyle(document.documentElement, null).getPropertyValue(`--${this.pieceStyle}-timer`));
         }
     }
-
     appendToPuzzle() {
         this.setPieceSize();
         this.piece.className = this.pieceGlobalClass + " " + this.pieceContentClass;
@@ -112,9 +112,8 @@ function startGame() {
     showSection(timerContainer);
     gameMode(puzzleSize, puzzlePieceType, puzzlePieceStyle);
     pieceInitialState();
-    setPieceAtRandomPosition();
+    shufflePiece();
     eventHandler();
-    startTime();
 }
 
 homePlayButton.addEventListener('click', showConfig);
@@ -164,11 +163,6 @@ function gameMode(board, type, style) {
 
 }
 function eventHandler() {
-    // listPieces.forEach(piece => piece.addEventListener('mousedown', lock))
-    // listPieces.forEach(piece => piece.addEventListener('touchstart', lock))
-    // listPieces.forEach(piece => piece.addEventListener('mouseup', release))
-    // listPieces.forEach(piece => piece.addEventListener('touchend', release))
-
     listPieces.forEach(piece => piece.addEventListener('click', moveOnTap))
     remakeDiv.addEventListener('click', remakePuzzleHandle);
     homeDiv.addEventListener('click', goHome);
@@ -181,12 +175,10 @@ function moveCounterHandle() {
     moveCounterDiv.innerHTML = `<span>Moves👣|</span> ${moveCounter}`;
 }
 function remakePuzzleHandle() {
-    stopTime();
-    startTime();
     moveCounter = 0;
     puzzleClockDiv.innerHTML = "";
     moveCounterDiv.innerHTML = "";
-    setPieceAtRandomPosition();
+    shufflePiece();
     showSection(puzzleContainer);
     showSection(timerContainer);
     hideSection(winMessageContainer);
@@ -370,7 +362,7 @@ function pieceCanMove(board, lastElementTargetIndex, firstElementTargetIndex) {
     }
 }
 function movePiece() {
-    if (lastElementTarget.classList.contains("piece__blank")) {
+    if (lastElementTarget.innerText = "piece__blank") {
         let lastElementTargetIndex = listPieces.indexOf(lastElementTarget);
         let firstElementTargetIndex = listPieces.indexOf(firstElementTarget);
 
@@ -391,112 +383,45 @@ function moveOnTap(e) {
     lastElementTarget = document.querySelector(".piece__blank");
     movePiece()
 }
-function moveOnSwipe() {
-    if (Math.abs(endX - startX) > 50)
-        if (endX < startX) {
-            // SWIPE LEFT
-            movePiece()
-            return;
-        } else if (endX > startX) {
-            // SWIPE RIGHT
-            movePiece()
-            return;
+
+function getRandomElement() {
+    let randomELement = listPieces.filter(piece => piece.innerText !== "blank");
+    return randomELement;
+}
+
+async function shufflePiece() {
+    stopTime();
+    for (let i = 0; i < 250; i++) {
+        let randomELementAvailable = getRandomElement();
+        let randomElement = randomELementAvailable[Math.floor(Math.random() * randomELementAvailable.length)];
+
+        firstElementTarget = randomElement;
+        lastElementTarget = document.querySelector(".piece__blank");
+
+        let lastElementTargetIndex = listPieces.indexOf(lastElementTarget);
+        let firstElementTargetIndex = listPieces.indexOf(firstElementTarget);
+
+        if (pieceCanMove(puzzleSize, lastElementTargetIndex, firstElementTargetIndex)) {
+            listPieces[lastElementTargetIndex] = firstElementTarget;
+            listPieces[firstElementTargetIndex] = lastElementTarget;
+            changePos.push(randomElement)
+
+            await new Promise((resolve) => setTimeout(resolve, 0.01));
+            puzzleContainer.innerHTML = "";
+            listPieces.forEach(el => puzzleContainer.appendChild(el));
         }
-
-    if (endY < startY) {
-        // SWIPE UP
-        movePiece()
-        return;
-    } else {
-        // SWIPE DOWN
-        movePiece()
-        return;
+        if (i == 249) startTime();
     }
+}
 
-}
-function lock(event) {
-    firstElementTarget = "";
-    startX = event.type === 'mousedown' ? event.screenX : event.changedTouches[0].screenX;
-    startY = event.type === 'mousedown' ? event.screenY : event.changedTouches[0].screenY;
-    firstElementTarget = event.target;
-}
-function release(event) {
-    if (!startX) return;
-    lastElementTarget = "";
-    endX = event.type === 'mouseup' ? event.screenX : event.changedTouches[0].screenX;
-    endY = event.type === 'mouseup' ? event.screenY : event.changedTouches[0].screenY;
-    lastElementTarget = event.target;
-    moveOnSwipe();
-}
-function touchEnd(event) {
-    // event.preventDefault();
-    event.stopPropagation();
-    var changedTouch = event.changedTouches[0];
-    var elem = document.elementFromPoint(changedTouch.clientX, changedTouch.clientY);
-    lastElementTarget = elem;
-    moveOnSwipe();
-}
-function setPieceAtRandomPosition() {
-    let randomNumber = Math.floor(Math.random() * Math.floor(Math.random() * 10 * 10));
-    let randomNumber2 = Math.floor(Math.random() * Math.floor(Math.random() * 99));
-    let randomNumber3 = Math.floor(Math.random() * 100 * Math.floor(Math.random() * 99));
-    // SORT MAYOUR TO MINORe
-    if (Math.random() < 0.3) {
-        listPieces.sort(function (a, b) {
-            if ((a.innerText + randomNumber) % 3 > (b.innerText + randomNumber) % 3 ||
-                (a.innerText.charCodeAt() + randomNumber) % 3 > (b.innerText.charCodeAt() + randomNumber) % 3) {
-                return 1;
-            }
-            if ((a.innerText + randomNumber) % 3 < (b.innerText + randomNumber) % 3 ||
-                (a.innerText.charCodeAt() + randomNumber) % 3 < (b.innerText.charCodeAt() + randomNumber) % 3) {
-                return -1;
-            }
-            // a must be equal to b
-            return 0;
-        });
-    } else if (Math.random() < 0.5 && Math.random() > 0.3) {
-        listPieces.sort(function (a, b) {
-            if ((a.innerText + randomNumber) % 3 < (b.innerText + randomNumber) % 3 ||
-                (a.innerText.charCodeAt() + randomNumber) % 3 < (b.innerText.charCodeAt() + randomNumber) % 3) {
-                return 1;
-            }
-            if ((a.innerText + randomNumber) % 3 > (b.innerText + randomNumber) % 3 ||
-                (a.innerText.charCodeAt() + randomNumber) % 3 > (b.innerText.charCodeAt() + randomNumber) % 3) {
-                return -1;
-            }
-            // a must be equal to b
-            return 0;
-        });
-    } else if (Math.random() > 0.5 && Math.random() < 0.7) {
-        listPieces.sort(function (a, b) {
-            if ((a.innerText + randomNumber2) % 3 > (b.innerText + randomNumber2) % 3 ||
-                (a.innerText.charCodeAt() + randomNumber2) % 3 > (b.innerText.charCodeAt() + randomNumber2) % 3) {
-                return 1;
-            }
-            if ((a.innerText + randomNumber2) % 3 < (b.innerText + randomNumber2) % 3 ||
-                (a.innerText.charCodeAt() + randomNumber2) % 3 < (b.innerText.charCodeAt() + randomNumber2) % 3) {
-                return -1;
-            }
-            // a must be equal to b
-            return 0;
-        });
-    } else {
-        listPieces.sort(function (a, b) {
-            if ((a.innerText + randomNumber3) / 3 < (b.innerText + randomNumber3) / 3 ||
-                (a.innerText.charCodeAt() + randomNumber3) / 3 < (b.innerText.charCodeAt() + randomNumber3) / 3) {
-                return 1;
-            }
-            if ((a.innerText + randomNumber3) / 3 > (b.innerText + randomNumber3) / 3 ||
-                (a.innerText.charCodeAt() + randomNumber3) / 3 > (b.innerText.charCodeAt() + randomNumber3) / 3) {
-                return -1;
-            }
-            // a must be equal to b
-            return 0;
-        });
+async function autoCompletePuzzle() {
+    for (let i = changePos.length - 1; i > 0; i--) {
+        firstElementTarget = changePos[i];
+        movePiece()
+        await new Promise((resolve) => setTimeout(resolve, 0.1));
     }
-    puzzleContainer.innerHTML = "";
-    listPieces.forEach(el => puzzleContainer.appendChild(el));
 }
+
 function isWinPosition(board) {
     let win = 0;
     let pieceNumber;
@@ -509,7 +434,6 @@ function isWinPosition(board) {
             stopTime();
             hideSection(puzzleContainer);
             showWinMessage()
-            console.log("win");
         }
     })
 }
