@@ -1,0 +1,17 @@
+{
+  "name": "number-puzzle",
+  "version": "1.0.0",
+  "description": "Game",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "Luis Martinez",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0",
+    "uuid": "^8.3.2"
+  }
+}

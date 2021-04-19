@@ -1,0 +1,140 @@
+
+* {
+	margin: 0;
+	padding: 0; 
+}
+
+html,body{
+		height: 100%;
+}
+
+:root {
+	--puzzle-background: #040c1b;
+	--piece-color: #f5deb3;
+	--wood: repeating-linear-gradient(90deg,#ca9414,#f5deb3 2%);
+	--wood-timer: repeating-linear-gradient(180deg,#ca9414,#f5deb3 2%);
+	--metal: repeating-linear-gradient(180deg,#ffffff, #9E9E9E 33%);
+	--metal-timer: repeating-linear-gradient(90deg,#ffffff, #9E9E9E 33%);
+	--border-color: #fff;
+	--main-background: repeating-radial-gradient(#15a5d0,#0d1b63);
+	--puzzle-size: 600px; 
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	user-select: none;
+	background-color: black;
+	overflow: hidden;
+}
+.game-container{
+	position: absolute;
+	top:50%;
+	left: 50%;
+	display: inline-block;
+	border: 2px solid var(--border-color);
+	border-radius: 5px;
+	transform: translate(-50%,-50%);
+}
+
+.multiplayer__container{
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+    justify-content: space-around;  
+	width: var(--puzzle-size);
+	height: var(--puzzle-size);
+	border: 1px solid var(--border-color);
+	border-radius: 5px;
+	background-color: #040c1b;
+	text-align: center;
+	color: white;
+	font-size: 50px;
+}
+
+.multiplayer__title{
+	color: white;
+	height: fit-content;
+	width: fit-content;
+	font-size: 75px;
+	font-weight: bolder;
+	border-radius: 5px;
+	padding: 10px;
+	margin:  10px auto;
+	text-align: center;
+	cursor: pointer;
+}
+
+.multiplayer__title > span[data-1]{
+	color: #b61c43;
+	background: white;
+	border: 2px solid var(--border-color);
+	border-radius: 15px;
+	animation: move-right 2s linear 1;
+}
+
+.multiplayer__title:hover ~  span[data-1]{
+	animation: move-right 2s linear 1;
+}
+
+.multiplayer__title > span[data-2]{
+	margin-left: -20px;
+	transition: .4s;
+	background: #b61c43;
+	border-radius: 15px;
+	border: 2px solid var(--border-color);
+}
+
+@keyframes move-right{
+	0%{
+		margin-right: -150px;
+		opacity:0;
+	}
+	100%{
+		margin-right: 0px;
+		opacity:1;
+	}
+}
+
+.multiplayer__buttons{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;  
+    align-items: center;
+    justify-content: center;  
+}
+
+.play__button,.code__input,.join__room__button{
+    align-self: center;
+    width: 440px;
+    height: 55px;
+    border-radius: 10px;
+    font-size: 30px;
+    font-weight: bolder;
+    margin: 10px;
+    text-align: center;
+    outline: none;
+}
+
+.code__input{
+    transition: background .4s ease-in-out;
+    border: none;
+    border-left: 6px solid white;
+    border-right: 6px solid white;
+    color: white;
+    background-color: #f0f8ff09;
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+}
+
+.code__input:focus,.code__input:hover{
+    background-color: #f0f8ff3b;
+    border: none;
+    border-left: 4px solid white;
+    border-right: 4px solid white;
+}
+
+.code__input:focus::placeholder{
+    color: white;
+}

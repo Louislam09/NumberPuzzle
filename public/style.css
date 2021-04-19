@@ -1,0 +1,521 @@
+
+*{
+	margin: 0;
+	padding: 0; 
+}
+
+html,body{
+		height: 100%;
+}
+:root {
+	--puzzle-background: #040c1b;
+	--piece-color: #f5deb3;
+	--wood: repeating-linear-gradient(90deg,#ca9414,#f5deb3 2%);
+	--wood-timer: repeating-linear-gradient(180deg,#ca9414,#f5deb3 2%);
+	--metal: repeating-linear-gradient(180deg,#ffffff, #9E9E9E 33%);
+	--metal-timer: repeating-linear-gradient(90deg,#ffffff, #9E9E9E 33%);
+	--border-color: #fff;
+	--main-background: repeating-radial-gradient(#15a5d0,#0d1b63);
+	--puzzle-size: 600px; 
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	user-select: none;
+	background-color: black;
+	overflow: hidden;
+}
+.game-container{
+	position: absolute;
+	top:50%;
+	left: 50%;
+	display: inline-block;
+	border: 2px solid var(--border-color);
+	border-radius: 5px;
+	/* transform: translateX(60%); */
+	transform: translate(-50%,-50%);
+}
+
+.game__home{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+	width: var(--puzzle-size);
+	height: var(--puzzle-size);
+	border: 1px solid var(--border-color);
+	border-radius: 5px;
+	background-color: #040c1b;
+	text-align: center;
+	color: white;
+	font-size: 50px;
+}
+
+.second__section{
+	flex: .7;
+}
+
+.home__title{
+	color: white;
+	height: fit-content;
+	width: fit-content;
+	font-size: 75px;
+	font-weight: bolder;
+	border-radius: 5px;
+	padding: 10px;
+	margin:  10px auto;
+	text-align: center;
+	cursor: pointer;
+}
+.home__title > span[data-1]{
+	color: #b61c43;
+	background: white;
+	border: 2px solid var(--border-color);
+	border-radius: 15px;
+	animation: move-right 2s linear 1;
+}
+.home__title:hover ~  span[data-1]{
+	animation: move-right 2s linear 1;
+}
+.home__title > span[data-2]{
+	margin-left: -20px;
+	transition: .4s;
+	background: #b61c43;
+	border-radius: 15px;
+	border: 2px solid var(--border-color);
+}
+@keyframes move-right{
+	0%{
+		margin-right: -150px;
+		opacity:0;
+	}
+	100%{
+		margin-right: 0px;
+		opacity:1;
+	}
+}
+.game__home button{
+	color: var(--puzzle-background);
+	width: fit-content;
+	width: 440px;
+	height: 110px;
+	font-size: 50px;
+	font-weight: bolder;
+	background: white;
+	border-radius: 10px;
+	padding: 10px;
+	margin: -25px auto;
+	text-align: center;
+	text-shadow: -1px -1px 1px #000;
+	cursor: pointer;
+	margin-top: 50px;
+	border: 2px solid var(--border-color);
+	outline: none;
+}
+
+.game__home button:hover{
+	transform: translateY(-10px);
+	border: 2px solid #b61c43;
+}
+
+/* INPUT */
+.name__input{
+    align-self: center;
+    width: 440px;
+    height: 77px;
+    border-radius: 10px;
+    font-size: 30px;
+    font-weight: bolder;
+    margin: 10px;
+    text-align: center;
+    outline: none;
+	text-transform: uppercase;
+}
+
+.name__input{
+    transition: background .4s ease-in-out;
+    border: none;
+    border-left: 6px solid white;
+    border-right: 6px solid white;
+    color: white;
+    background-color: #f0f8ff09;
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+}
+
+.name__input:focus,.name__input:hover{
+    background-color: #f0f8ff3b;
+    border: none;
+    border-left: 4px solid white;
+    border-right: 4px solid white;
+}
+
+.name__input:focus::placeholder{
+    color: white;
+}
+
+.game__mode{
+	display: inline-flex;
+	flex-direction: column;
+	width: var(--puzzle-size);
+	height: var(--puzzle-size);
+	border: 1px solid var(--border-color);
+	border-radius: 5px;
+	background-color: #040c1b;
+	text-align: center;
+	color: white;
+	font-size: 50px;
+	padding: 10px 10px;
+}
+.puzzle__continue-button,.puzzle__back-button{
+	color: var(--puzzle-background);
+	width: fit-content;
+	height: 110px;
+	font-size: 50px;
+	/* color: #b61c43; */
+	color: #fff;
+	font-weight: bolder;
+	background: white;
+	border-radius: 20px;
+	padding: 10px;
+	margin:  auto;
+	text-align: center;
+	text-shadow: -2px -2px 1px #000;
+	cursor: pointer;
+	margin-top: 50px;
+	border: 2px solid #f30505a2;
+	outline: none;
+	transform: translateY(-10px);
+	background: var(--wood);
+}
+
+.puzzle__continue-button:hover{
+	transform: translate(20px,-10px);
+	border: 2px solid var(--border-color);
+	/* background: #b61c43; */
+	color: #fff;
+	
+}
+.puzzle__back-button:hover{
+	transform: translate(-20px,-10px);
+	border: 2px solid var(--border-color);
+	/* background: #b61c43; */
+	color: #fff;
+}
+
+.puzzle__mode > span  {
+	color: white;
+	height: fit-content;
+	width: fit-content;
+	font-size: 50px;
+	font-weight: bolder;
+	background: var(--wood);
+	border-radius: 5px;
+	padding: 10px;
+	margin: 10px auto;
+	text-align: center;
+	text-shadow: 0px 0px 20px #000;
+	cursor: pointer;
+	border: 2px solid var(--border-color);
+}
+.puzzle__mode > select  {
+	display: grid;
+	border: 2px solid var(--border-color);
+	padding: 10px 10px;
+	margin: 20px auto;
+	font-size: 30px;
+	border-radius: 15px;
+	outline: none;
+	text-align: center;
+	font-weight: bolder;
+	background: repeating-linear-gradient(90deg,#fbfbfb9a,#ffffff 85%);
+}
+.puzzle__mode > select:hover{
+	text-shadow: -1px -2px 1px #000;
+
+}
+.puzzle__mode > select > option{
+	color: white;
+	background: #040c1b;
+	border-radius: 15px;
+	outline: none;
+
+}
+.game__timer{
+	position: relative;
+	/* width: var(--puzzle-size); */
+	height: 52px;
+	background: var(--wood-timer);
+	z-index: 11;
+}
+.timer__item{
+	width: fit-content;
+	font-size: 40px;
+	color:white;
+	/* border: 1px solid #fff; */
+	border-bottom-color:var(--border-color); 
+	float: left;
+	outline: none;
+	cursor: pointer;
+	transition: .4s;
+	color: black;
+	font-weight: bolder;
+}
+.timer__remake{
+	margin-left: 5%;
+}
+.timer__home{
+	margin-left: 5%;
+}
+.timer__remake:hover{
+	background: white;
+	border-radius:50px;
+	transform: rotate(90deg);
+}
+.timer__moves {
+	float: right;
+}
+.puzzle-container {
+	display: inline-table;
+	min-width: var(--puzzle-size);
+	min-height: var(--puzzle-size);
+	border: 1px solid var(--border-color);
+	border-radius: 5px;
+	background: var(--main-background);
+}
+.puzzle__piece{
+	height: calc(var(--puzzle-size)/6);
+	width: calc(var(--puzzle-size)/6);
+	float: left;
+	font-size: 50px;
+	background-color: greenyellow;
+	padding: 10px;
+	margin-left: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	text-align: center;
+	cursor: pointer;
+	line-height: 100px;
+	border-radius: 5px;
+}
+.piece__blank {
+	background-color: transparent;
+	color: transparent;
+}
+.game__win-message{
+	display: inline-grid;
+	width: var(--puzzle-size);
+	height:var(--puzzle-size);
+	border: 1px solid var(--border-color);
+	border-radius: 5px;
+	background: var(--main-background);
+	text-align: center;
+	color: white;
+	font-size: 50px;
+}
+.game__win-message > span {
+	color: var(--puzzle-background);
+	height: fit-content;
+	width: fit-content;
+	font-size: 50px;
+	font-weight: bolder;
+	border-radius: 5px;
+	padding: 10px;
+	margin: auto;
+	text-align: center;
+	text-shadow: 0px 0px 20px var(--border-color);
+	cursor: pointer;
+	border: 2px solid var(--border-color);
+}
+.game__win-message > span:first-child{
+	border: 4px solid  var(--border-color);
+	width: 95%;
+}
+.game__win-message > span:nth-child(odd){
+	background: var(--metal-timer);
+
+}
+.game__win-message > span[data-interline]{
+	background-color: #ffffff11;
+	text-shadow: 0px 0px 20px #000;
+	color: white;
+}
+.game__win-message button{
+	color: var(--puzzle-background);
+	width: fit-content;
+	height: 110px;
+	font-size: 50px;
+	font-weight: bolder;
+	background: white;
+	border-radius: 20px;
+	padding: 10px;
+	margin: auto;
+	text-align: center;
+	text-shadow: -1px -1px 1px #000;
+	cursor: pointer;
+	margin-top: 50px;
+	border: 2px solid var(--border-color);
+	outline: none;
+}
+.game__win-message button:hover{
+	transform: translateY(-10px);
+	border: 2px solid var(--border-color);
+}
+.game__about-me{
+	display: inline-flex;
+	flex-direction: column;
+	width: var(--puzzle-size);
+	height: var(--puzzle-size);
+	border: 1px solid var(--border-color);
+	border-radius: 5px;
+	background: var(--main-background);
+	/* text-align: justify; */
+	color: white;
+	font-size: 2em;
+}
+.about-me__exit__button{
+	position: relative;
+	width: 50px;
+	height: 50px;
+	left: 90%;
+	top: -20%;
+	outline: none;
+}
+.about-me__exit__button:hover{
+	border: 2px solid red;
+	border-radius: 50%;
+}
+.game__about-me > span:first-child{
+	font-size: 2.5em;
+	font-weight: bolder;
+	text-shadow: -8px -8px 2px black;
+	color: white;
+	margin: 30px auto;
+	margin-bottom: 10px;
+	text-decoration: underline;
+}
+.game__about-me p {
+	font-size: 1em;
+	color: white;
+	text-align: justify;
+	margin: 5px 50px;
+}
+.game__about-me b{
+	margin: 5px auto;
+}
+.about-me__link {
+	display: flex;
+	width: fit-content;
+	height: 150px;
+	margin: auto;
+}
+.about-me__link > span{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	border: 1px solid var(--border-color);
+	border-radius: 15px;
+	margin: auto 15px ;
+}
+.about-me__link > span::before{
+	position: absolute;
+	top: -60px;
+	content: "Click👆🏽Me!";
+	color: red;
+	font-weight: bolder;
+	font-size: .5em;
+	width: fit-content; 
+	padding: 10px 10px;
+	border-radius: 5px;
+	height: fit-content;
+	background: white; 
+	transition: .4s;
+	margin-top: 50px;
+	z-index: -1;
+	visibility: hidden;
+}
+.about-me__link > span::after{
+	position: absolute;
+	top: -30px;
+	left: 35px;
+	content: "";
+    border-right: 20px solid transparent;
+    border-left: 20px solid transparent;
+    border-top: 25px solid #fff;
+	transition: .4s;
+	margin-top: 50px;
+	z-index: -1;
+	visibility: hidden;
+}
+.about-me__game__link >  img{
+	width: 100%;
+	height: 100%;
+	border: 2px solid var(--border-color);
+	border-radius: 15px;
+}
+.about-me__link > span:hover{
+	transform: translateY(-15px);
+	box-shadow: -1px 20px 30px 0px black;
+}
+.about-me__link > span:hover::before,
+.about-me__link > span:hover::after  {
+	animation: rotate .4s linear 1;
+	margin-top: 0px;
+	visibility: visible;
+	animation: float 1s ease infinite;
+
+}
+
+@keyframes float{
+	0%{
+		margin-top: -10px;
+	}
+	100%{
+		margin-top: 0px;
+
+	}
+}
+@keyframes rotate{
+	0%{
+		transform: rotate(0deg);	
+	}
+	100%{
+		transform: rotateY(180deg);	
+
+	}
+}
+@media only screen and (min-width: 320px) and (max-width: 450px) {
+	html,body{
+		height: 100%;
+	}
+	body{
+		zoom: 58%;
+		margin: 0;
+		padding: 0;
+		user-select: none;
+		background-color: black;
+		overflow: hidden;
+	}
+	
+}
+@media only screen and (min-width: 450px) and (max-width: 1023px) {
+	html,body{
+		height: 100%;
+	}
+	body{
+		zoom: 95%;
+		margin: 0;
+		padding: 0;
+		user-select: none;
+		background-color: black;
+		overflow: hidden;
+	}
+	.timer__remake{
+		margin-left: 2%;
+	}
+	.timer__home{
+		margin-left: 2%;
+	}
+	
+}

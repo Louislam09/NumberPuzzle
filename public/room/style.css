@@ -1,0 +1,232 @@
+@import "../style.css";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,html{
+    height: 100vh;
+    background: black;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.room_code{
+    width: 80%;
+    text-align: center;
+    height: fit-content;
+    padding: 10px;
+    margin:  auto auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.room_code div{
+    font-size: 3rem;
+    border-top: 1px solid #ffffff49;
+    border-bottom: 1px solid #ffffff49;
+    font-weight: bolder;
+    text-shadow: 1px 4px 5px  #009688;
+    text-shadow: 1px 4px 5px  #040c1b;
+    color: white;
+    width: fit-content;
+    padding: 0px 32px;
+    background: var(--wood);
+}
+.room_code h1{
+    color: white;
+}
+
+/* ROOM */
+.room__container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    height: 500px;
+    width: 100%;
+    height: 100vh;
+    /* background: linear-gradient(to top,#ff00d4,#6f00ff,#00a2ff); */
+    /* background-image: url("./../img/stardust.png"); */
+    font-family: lower-easy, cursive;
+    animation: move 18s ease-in-out infinite alternate;
+}
+
+.waiting__section{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /* color: #009688; */
+    color: #040c1b;
+    /* background: #ffffff4b; */
+    background: #040c1b;
+    /* background-color: #00968717; */
+    width: 90%;
+    height: 40%;
+    margin-top: 20px;
+    border-radius: 10px;
+    /* box-shadow: 0px -4px 5px  #009688; */
+    box-shadow: 0px -4px 5px  #040c1b;
+    animation: moveIn 1s ease-in-out infinite alternate;
+}
+
+
+.players__section{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    height: 50%;
+    margin-top: 20px;
+    background: #ffffff4b;
+    padding: 20px 10px;
+    border-radius: 10px;
+    /* background-color: #00968717; */
+    background-color: #040c1b;
+    /* box-shadow: 0px 4px 5px  #009688; */
+    box-shadow: 0px 4px 5px  #040c1b;
+    animation: moveIn 1s ease-in-out infinite alternate;
+}
+.players__list{
+    position: relative;
+    height: 100%;
+}
+
+.player-list__title{
+    color: white;
+    font-size: 1.5rem;
+    text-align: center;
+    text-decoration: underline;
+    margin-bottom: 10px;
+}
+
+.player{
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ffffff4b;
+    margin: 11px auto;
+    width: 141px;
+    background-color: #ffffff4b;
+    height: 64px;
+    border-radius: 5px;
+
+}
+
+.player:hover{
+    background: #ffffff8a;
+    cursor: pointer;
+
+}
+
+.none{ 
+    opacity: .5;
+}
+
+.player_pic{
+    width: 35px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background: #009688; */
+    background: #040c1b;
+}
+
+.first__letter{
+    font-weight: 700;
+    color: white;
+}
+
+.player__name{
+    font-size: 1rem;
+    color: white;
+    margin-left: 5px;
+    text-transform: uppercase;
+    padding: 5px;
+}
+
+.options__section {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    margin-top: 10px;
+}
+/* #040c1b */
+
+.options__section button{
+    min-width: 100%;
+    width: fit-content;
+    height: 79px;
+    background: #ffffff49;
+    margin: 4px auto;
+    color: white;
+    outline: none;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 0 4px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background ease;
+    background: var(--wood);
+    text-shadow: -2px -2px 1px #000;
+    font-weight: bolder;
+    font-size: 50px;
+}
+
+.options__section button:hover{
+    background: #ffffff8a;
+    transform: translate(20px,0px);
+	border: 2px solid var(--border-color);
+	/* background: #b61c43; */
+	color: #fff;
+}
+
+button.disabled{
+    display: none;
+}
+
+
+@keyframes move{
+    0%{
+        background-position-x: 100%;
+        background-position-y: 100%;
+    }
+    50%{
+        background-color: black; 
+    }
+    100%{
+        background-position-x: 10%;
+        background-position-y: 10%;
+    }
+}
+
+
+@keyframes moveIn{
+    0%{
+        /* box-shadow: -1px -1px 5px  #009688; */
+        box-shadow: -1px -1px 5px  #040c1b;
+    }
+    50%{
+        /* box-shadow: 0px 0px 5px  #009688; */
+        box-shadow: 0px 0px 5px  #040c1b;
+    }
+    100%{
+        /* box-shadow: 1px 1px 5px  #009688; */
+        box-shadow: 1px 1px 5px  #040c1b;
+    }
+}
