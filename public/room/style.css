@@ -70,7 +70,8 @@ body,html{
     /* color: #009688; */
     color: #040c1b;
     /* background: #ffffff4b; */
-    background: #040c1b;
+    background: var(--main-background);
+    /* background: #040c1b; */
     /* background-color: #00968717; */
     width: 90%;
     height: 40%;
@@ -94,7 +95,8 @@ body,html{
     padding: 20px 10px;
     border-radius: 10px;
     /* background-color: #00968717; */
-    background-color: #040c1b;
+    /* background-color: #040c1b; */
+    background: var(--main-background);
     /* box-shadow: 0px 4px 5px  #009688; */
     box-shadow: 0px 4px 5px  #040c1b;
     animation: moveIn 1s ease-in-out infinite alternate;
@@ -142,7 +144,8 @@ body,html{
     align-items: center;
     justify-content: center;
     /* background: #009688; */
-    background: #040c1b;
+    /* background: #040c1b; */
+    background: var(--main-background);
 }
 
 .first__letter{
@@ -165,12 +168,14 @@ body,html{
     align-items: center;
     width: 40%;
     margin-top: 10px;
+    margin-right: 18px;
+    width: fit-content;
 }
 /* #040c1b */
 
 .options__section button{
     min-width: 100%;
-    width: fit-content;
+    /* width: fit-content; */
     height: 79px;
     background: #ffffff49;
     margin: 4px auto;

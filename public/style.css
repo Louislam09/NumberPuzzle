@@ -248,6 +248,9 @@ body {
 	height: 52px;
 	background: var(--wood-timer);
 	z-index: 11;
+	display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
 .timer__item{
 	width: fit-content;
@@ -275,6 +278,7 @@ body {
 }
 .timer__moves {
 	float: right;
+	padding-bottom: 4px;
 }
 .puzzle-container {
 	display: inline-table;

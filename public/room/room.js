@@ -101,7 +101,6 @@ socket.on('code', ({ code }) => {
 });
 
 socket.on('players-info', playerInformations => {
-  console.log(playerInformations)
   // socket.emit("myID",{ID: socket.id});
   PLAYERS_INFORMATIONS = playerInformations;
   localStorage.PLAYERS_INFORMATIONS = JSON.stringify(PLAYERS_INFORMATIONS);
@@ -137,6 +136,5 @@ startGameButton.addEventListener("click",() => {
     gameConfig: JSON.parse(localStorage.GAME_CONFIG)
   });
 });
-
 
 closeRoomButton.addEventListener("click",()=> window.location.href= "/")

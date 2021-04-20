@@ -74,24 +74,19 @@ function onConnect(socket){
         });
     }
 
-    function GAMEOVER({ userName ,roomName}){
+    function GAMEOVER({ userName ,roomName,winnerMove}){
         io.emit('GAME_OVER', {
             room: roomName,
-            user: userName
+            user: userName,
+            winnerMove
         });
     }
 
-    function PLAY_AGAIN({ roomName ,informations}){
-        let GAME_LEVEL = 2;
-        let INITIAL_COLOR = getColor();
-        let INITIAL_SQUARE_NUMBER = getNumber(GAME_LEVEL);
-
+    function PLAY_AGAIN({ roomName ,informations,gameConfig}){
         io.emit('START_GAME', {
             playerInformations: informations,
             roomName: roomName,
-            newColor: INITIAL_COLOR,
-            gameLevel: GAME_LEVEL,
-            selectedSquare: INITIAL_SQUARE_NUMBER
+            config: gameConfig
         });
     }
    
@@ -138,3 +133,6 @@ function onConnect(socket){
         playAgainConfirmations[playerRoom][playerIndex] = null;
     }
 }
+
+
+// PLAY AGAIN EVENT NEEDED
