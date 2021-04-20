@@ -73,11 +73,12 @@ function onConnect(socket){
         });
     }
 
-    function GAMEOVER({ userName ,roomName,winnerMove}){
+    function GAMEOVER({ userName ,roomName,winnerMove,time}){
         io.emit('GAME_OVER', {
             room: roomName,
             user: userName,
-            winnerMove
+            winnerMove:winnerMove,
+            time: time
         });
     }
 

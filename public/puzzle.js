@@ -447,9 +447,10 @@ function isWinPosition(board) {
         if (win === pieceNumber) {
             socket.emit("GAME_OVER",{
                 userName: localStorage.MY_NAME,
+                time: {min:gameMinute, sec:gameSecond},
                 roomName: localStorage.ROOM_NAME,
                 gameInfo: JSON.parse(localStorage.GAME_INFO),
-                winnerMove: moveCounter
+                winnerMove: moveCounter,
             });
         }
     })
@@ -593,11 +594,13 @@ socket.on("START_GAME", (data) => {
     }
 });
 
-socket.on("GAME_OVER", ({room,user,winnerMove}) => {
+socket.on("GAME_OVER", ({room,user,winnerMove,time}) => {
     if(room === localStorage.ROOM_NAME){
         GAMEOVER_F();
         winnerSpan.innerText = `🎊 ${user} Win 🎊`;
+        winTimeSpan.innerText = `Time⏰:  ${time.min||gameMinute} : ${time.sec||gameSecond}`;
         winMoveSpan.innerText = `Moves👣: ${winnerMove}`;
+
     }
 });
 
