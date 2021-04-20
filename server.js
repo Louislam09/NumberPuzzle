@@ -29,7 +29,6 @@ function onConnect(socket){
     socket.on('user-name', GET_USER_NAME);
     socket.on("START_GAME", START_GAME);
     socket.on('GAME_OVER', GAMEOVER);
-    // socket.on('SQUARE_CLICKED', SQUARE_CLICKED);
     socket.on("PLAY_AGAIN_REQUEST",PLAY_AGAIN_REQUEST);
     socket.on("PLAY_AGAIN_REJECTED",PLAY_AGAIN_REJECTED);
     socket.on('disconnect', PLAYER_DISCONNECTED);
@@ -90,10 +89,6 @@ function onConnect(socket){
         });
     }
    
-    function CLICK_EMITED(data,room){
-        io.emit("SQUARE_CLICKED",{...data,room: room});
-    }
-    
     function PLAY_AGAIN_REQUEST({ userName, roomName,gameInfo}) {
         for(const i in playAgainConfirmations[roomName]){
             if(playAgainConfirmations[roomName][i] === null){

@@ -59,9 +59,9 @@ let tapSound = new Audio();
 tapSound.src = "sound/tap_sound.mp3";
 tapSound.volume = 0.5;
 
-window.addEventListener('load', () => {
-    registerSW();
-})
+// window.addEventListener('load', () => {
+//     registerSW();
+// })
 
 const socket = io();
 
@@ -536,15 +536,15 @@ function getConfigData() {
     })
 };
 
-async function registerSW() {
-    if ("serviceWorker" in navigator) {
-        try {
-            await navigator.serviceWorker.register("./sw.js");
-        } catch (error) {
-            console.log("ServiceWorker registration failed")
-        }
-    }
-};
+// async function registerSW() {
+//     if ("serviceWorker" in navigator) {
+//         try {
+//             await navigator.serviceWorker.register("./sw.js");
+//         } catch (error) {
+//             console.log("ServiceWorker registration failed")
+//         }
+//     }
+// };
 
 // NEW GAME MODE
 const goToRoom = () => {
